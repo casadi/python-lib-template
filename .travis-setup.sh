@@ -62,7 +62,7 @@ chmod +x winetricks
 wget $INSTALLER_URL
 eval $INSTALL_COMMAND
 
-sed -i 's/_windows_cert_stores = .*/_windows_cert_stores = ("ROOT",)/' "$EXECDIR/Lib/ssl.py"
+#sed -i 's/_windows_cert_stores = .*/_windows_cert_stores = ("ROOT",)/' "$EXECDIR/Lib/ssl.py"
 
 eval $MORE_COMMANDS
 
