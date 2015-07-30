@@ -12,7 +12,7 @@ case "$WINEENV" in
         MORE_COMMANDS= # Crash: https://travis-ci.org/WineAsCI/python-lib-template/jobs/49725679#L1789
         ;;
     py27)
-        VERSION=2.7.10
+        VERSION=2.7.9
         INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION$BITSUFFIX.msi"
         INSTALL_COMMAND="wine msiexec /i python-$VERSION$BITSUFFIX.msi"
         EXECDIR="$HOME/.wine/drive_c/Python27"
