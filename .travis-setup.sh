@@ -8,6 +8,7 @@ case "$WINEENV" in
         VERSION=2.6.6
         INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.msi"
         INSTALL_COMMAND="wine msiexec /i python-$VERSION.msi"
+        CLEAN_COMMAND="del /f python-$VERSION.msi"
         EXECDIR="$HOME/.wine/drive_c/Python26"
         MORE_COMMANDS= # Crash: https://travis-ci.org/WineAsCI/python-lib-template/jobs/49725679#L1789
         ;;
@@ -15,6 +16,7 @@ case "$WINEENV" in
         VERSION=2.7.9
         INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.msi"
         INSTALL_COMMAND="wine msiexec /i python-$VERSION.msi"
+        CLEAN_COMMAND="del /f python-$VERSION.msi"
         EXECDIR="$HOME/.wine/drive_c/Python27"
         MORE_COMMANDS='wget http://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi; wine msiexec /i VCForPython27.msi'
         ;;
@@ -22,6 +24,7 @@ case "$WINEENV" in
         VERSION=2.7.10
         INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.amd64.msi"
         INSTALL_COMMAND="wine msiexec /i python-$VERSION.amd64.msi"
+        CLEAN_COMMAND="del /f python-$VERSION.amd64.msi"
         EXECDIR="$HOME/.wine/drive_c/Python27"
         MORE_COMMANDS='wget http://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi; wine msiexec /i VCForPython27.msi'
         ;;
@@ -29,6 +32,7 @@ case "$WINEENV" in
         VERSION=3.3.5
         INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.msi"
         INSTALL_COMMAND="wine msiexec /i python-$VERSION.msi"
+        CLEAN_COMMAND="del /f python-$VERSION.msi"
         EXECDIR="$HOME/.wine/drive_c/Python33"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
@@ -36,6 +40,7 @@ case "$WINEENV" in
         VERSION=3.4.2
         INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.msi"
         INSTALL_COMMAND="wine msiexec /i python-$VERSION.msi"
+        CLEAN_COMMAND="del /f python-$VERSION.msi"
         EXECDIR="$HOME/.wine/drive_c/Python34"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
@@ -43,6 +48,7 @@ case "$WINEENV" in
         VERSION=2.5.0
         INSTALLER_URL="https://bitbucket.org/pypy/pypy/downloads/pypy-$VERSION-win32.zip"
         INSTALL_COMMAND="unzip pypy-$VERSION-win32.zip"
+        CLEAN_COMMAND="del /f pypy-$VERSION-win32.zip"
         EXECDIR="$PWD/pypy-$VERSION-win32"
         PYTHON="$EXECDIR/pypy.exe"
         PIP="$EXECDIR/bin/pip.exe"
@@ -68,7 +74,7 @@ chmod +x winetricks
 #wget http://www.orbitals.com/programs/py.exe
 wget $INSTALLER_URL
 eval $INSTALL_COMMAND
-
+eval $CLEAN_COMMAND
 
 ls -al /home/travis/.wine/drive_c/
 
