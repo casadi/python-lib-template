@@ -36,6 +36,14 @@ case "$WINEENV" in
         EXECDIR="$HOME/.wine/drive_c/Python33"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
+    py34_64)
+        VERSION=3.4.2
+        INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.amd64.msi"
+        INSTALL_COMMAND="wine msiexec /i python-$VERSION.amd64.msi"
+        CLEAN_COMMAND="del /f python-$VERSION.amd64.msi"
+        EXECDIR="$HOME/.wine/drive_c/Python34"
+        MORE_COMMANDS= # Needs VC++ 10.0
+        ;;
     py34)
         VERSION=3.4.2
         INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.msi"
