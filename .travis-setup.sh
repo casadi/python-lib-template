@@ -52,6 +52,23 @@ case "$WINEENV" in
         EXECDIR="$HOME/.wine/drive_c/Python34"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
+    py35_64)
+        VERSION=3.5.1
+        INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION-amd64.exe"
+        INSTALL_COMMAND="wine python-$VERSION-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0"
+        CLEAN_COMMAND="del /f python-$VERSION-amd64.exe"
+        EXECDIR="$HOME/.wine/drive_c/Python35"
+        MORE_COMMANDS= # Needs VC++ 10.0
+        ;;
+    py35)
+        VERSION=3.5.1
+        INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.exe"
+        INSTALL_COMMAND="wine python-$VERSION.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0"
+        CLEAN_COMMAND="del /f python-$VERSION.exe"
+        EXECDIR="$HOME/.wine/drive_c/Python35"
+        MORE_COMMANDS= # Needs VC++ 10.0
+        ;;
+        
     pypy)
         VERSION=2.5.0
         INSTALLER_URL="https://bitbucket.org/pypy/pypy/downloads/pypy-$VERSION-win32.zip"
