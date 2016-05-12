@@ -99,6 +99,7 @@ chmod +x winetricks
 #wget http://www.orbitals.com/programs/py.exe
 wget $INSTALLER_URL
 eval $INSTALL_COMMAND
+sleep 60;
 eval $CLEAN_COMMAND
 
 ls -al /home/travis/.wine/drive_c/
