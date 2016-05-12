@@ -100,7 +100,8 @@ esac
 
 export PATH="/opt/wine-staging/bin:$PATH"
 
-WINEARCH=wineboot
+WINEARCH=win32
+wine wineboot
 
 wget http://winetricks.org/winetricks
 chmod +x winetricks
