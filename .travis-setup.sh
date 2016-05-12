@@ -54,8 +54,18 @@ case "$WINEENV" in
         ;;
     py35_64)
         VERSION=3.5.1
-        INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION-amd64.exe"
-        INSTALL_COMMAND="wine python-$VERSION-amd64.exe /quiet TargetDir=C:\Python35 InstallAllUsers=1 PrependPath=1 Include_test=0"
+        VERSIONSHORT=35
+        cat <<EOF > install_list.txt
+        https://www.python.org/ftp/python/$VERSION/amd64/core.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/dev.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/lib.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/exe.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/tools.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/pip.msi
+EOF
+        cat install_list.txt
+        INSTALLER_URL="-i install_list.txt"
+        INSTALL_COMMAND="wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
         CLEAN_COMMAND="del /f python-$VERSION-amd64.exe"
         EXECDIR="$HOME/.wine/drive_c/Python35"
         MORE_COMMANDS= # Needs VC++ 10.0
