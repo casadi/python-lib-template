@@ -104,7 +104,7 @@ WINEARCH=wineboot
 
 wget http://winetricks.org/winetricks
 chmod +x winetricks
-./winetricks nocrashdialog
+./winetricks nocrashdialog -q vcrun2015
 
 #wget http://www.orbitals.com/programs/py.exe
 wget $INSTALLER_URL
