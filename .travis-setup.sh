@@ -101,6 +101,8 @@ esac
 export PATH="/opt/wine-staging/bin:$PATH"
 
 #export WINEARCH=win32
+rm -p ~/.wine
+winecfg
 wine wineboot
 
 wget http://winetricks.org/winetricks
