@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo add-apt-repository -y ppa:ehoover/compholio
 sudo apt-get -qy update
-sudo apt-get install -y wine-staging winbind
+sudo apt-get install -y wine-staging winbind cabextract
 
 case "$WINEENV" in
     py26)
