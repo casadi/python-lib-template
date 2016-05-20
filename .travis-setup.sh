@@ -72,8 +72,18 @@ EOF
         ;;
     py35)
         VERSION=3.5.1
-        INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.exe"
-        INSTALL_COMMAND="wine python-$VERSION.exe /quiet TargetDir=C:\Python35 InstallAllUsers=1 PrependPath=1 Include_test=0"
+        VERSIONSHORT=35
+        cat <<EOF > install_list.txt
+        https://www.python.org/ftp/python/$VERSION/win32/core.msi
+        https://www.python.org/ftp/python/$VERSION/win32/dev.msi
+        https://www.python.org/ftp/python/$VERSION/win32/lib.msi
+        https://www.python.org/ftp/python/$VERSION/win32/exe.msi
+        https://www.python.org/ftp/python/$VERSION/win32/tools.msi
+        https://www.python.org/ftp/python/$VERSION/win32/pip.msi
+EOF
+        cat install_list.txt
+        INSTALLER_URL="-i install_list.txt"
+        INSTALL_COMMAND="wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
         CLEAN_COMMAND="del /f python-$VERSION.exe"
         EXECDIR="$HOME/.wine/drive_c/Python35"
         MORE_COMMANDS= # Needs VC++ 10.0
