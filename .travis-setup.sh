@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo add-apt-repository -y ppa:pipelight/daily
 sudo apt-get -qy update
-sudo apt-get install -y wine-staging winbind
+sudo apt-get install -y wine-staging winbind xvfb cabextract
 
 case "$WINEENV" in
     py26)
@@ -102,6 +102,10 @@ export PATH="/opt/wine-staging/bin:$PATH"
 
 #export WINEARCH=win32
 wine wineboot
+
+# Needed  for the vcrun2015 installer
+Xvfb :1 &
+export DISPLAY=:1
 
 wget http://winetricks.org/winetricks
 chmod +x winetricks
