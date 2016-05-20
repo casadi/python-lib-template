@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo add-apt-repository -y ppa:pipelight/daily
 sudo apt-get -qy update
-sudo apt-get install -y wine-staging winbind
+sudo apt-get install -y wine-staging winbind xvfb cabextract
 
 case "$WINEENV" in
     py26)
@@ -65,16 +65,26 @@ case "$WINEENV" in
 EOF
         cat install_list.txt
         INSTALLER_URL="-i install_list.txt"
-        INSTALL_COMMAND="wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
-        CLEAN_COMMAND="del /f python-$VERSION-amd64.exe"
+        INSTALL_COMMAND="wget http://winetricks.org/winetricks;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2015;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
+        CLEAN_COMMAND=""
         EXECDIR="$HOME/.wine/drive_c/Python35"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
     py35)
         VERSION=3.5.1
-        INSTALLER_URL="https://www.python.org/ftp/python/$VERSION/python-$VERSION.exe"
-        INSTALL_COMMAND="wine python-$VERSION.exe /quiet TargetDir=C:\Python35 InstallAllUsers=1 PrependPath=1 Include_test=0"
-        CLEAN_COMMAND="del /f python-$VERSION.exe"
+        VERSIONSHORT=35
+        cat <<EOF > install_list.txt
+        https://www.python.org/ftp/python/$VERSION/win32/core.msi
+        https://www.python.org/ftp/python/$VERSION/win32/dev.msi
+        https://www.python.org/ftp/python/$VERSION/win32/lib.msi
+        https://www.python.org/ftp/python/$VERSION/win32/exe.msi
+        https://www.python.org/ftp/python/$VERSION/win32/tools.msi
+        https://www.python.org/ftp/python/$VERSION/win32/pip.msi
+EOF
+        cat install_list.txt
+        INSTALLER_URL="-i install_list.txt"
+        INSTALL_COMMAND="wget http://winetricks.org/winetricks;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2015;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
+        CLEAN_COMMAND=""
         EXECDIR="$HOME/.wine/drive_c/Python35"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
@@ -103,9 +113,7 @@ export PATH="/opt/wine-staging/bin:$PATH"
 #export WINEARCH=win32
 wine wineboot
 
-wget http://winetricks.org/winetricks
-chmod +x winetricks
-./winetricks nocrashdialog -q vcrun2015
+# Needed  for the vcrun2015 installer
 
 #wget http://www.orbitals.com/programs/py.exe
 wget $INSTALLER_URL
