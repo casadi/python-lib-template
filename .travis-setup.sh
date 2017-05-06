@@ -104,7 +104,7 @@ EOF
         INSTALLER_URL="-i install_list.txt"
         INSTALL_COMMAND="wget http://winetricks.org/winetricks;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2015;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
         CLEAN_COMMAND=""
-        EXECDIR="$HOME/.wine/drive_c/Python35"
+        EXECDIR="$HOME/.wine/drive_c/Python36"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
     py36)
@@ -122,7 +122,7 @@ EOF
         INSTALLER_URL="-i install_list.txt"
         INSTALL_COMMAND="wget http://winetricks.org/winetricks;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2015;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
         CLEAN_COMMAND=""
-        EXECDIR="$HOME/.wine/drive_c/Python35"
+        EXECDIR="$HOME/.wine/drive_c/Python36"
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
         
