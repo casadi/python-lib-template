@@ -3,7 +3,7 @@ sudo add-apt-repository -y ppa:pipelight/daily
 sudo apt-get -qy update
 sudo apt-get install -y wine-staging winbind xvfb cabextract
 
-WINETRICKS=https://github.com/Winetricks/winetricks/blob/3fd9a36d9fb973ccf334413937e4d71aa5401311/src/winetricks
+WINETRICKS=https://raw.githubusercontent.com/Winetricks/winetricks/3fd9a36d9fb973ccf334413937e4d71aa5401311/src/winetricks
 
 case "$WINEENV" in
     py26)
