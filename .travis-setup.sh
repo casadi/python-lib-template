@@ -170,7 +170,7 @@ EOF
 
     py38_64)
         VERSION=3.8.0
-        VERSIONSHORT=37
+        VERSIONSHORT=38
         cat <<EOF > install_list.txt
         https://www.python.org/ftp/python/$VERSION/amd64/core.msi
         https://www.python.org/ftp/python/$VERSION/amd64/dev.msi
