@@ -166,6 +166,45 @@ EOF
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
         
+
+
+    py38_64)
+        VERSION=3.8.0
+        VERSIONSHORT=37
+        cat <<EOF > install_list.txt
+        https://www.python.org/ftp/python/$VERSION/amd64/core.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/dev.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/lib.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/exe.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/tools.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/pip.msi
+EOF
+        cat install_list.txt
+        INSTALLER_URL="-i install_list.txt"
+        INSTALL_COMMAND="wget $WINETRICKS;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2015;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
+        CLEAN_COMMAND=""
+        EXECDIR="$HOME/.wine/drive_c/Python37"
+        MORE_COMMANDS= # Needs VC++ 10.0
+        ;;
+    py38)
+        VERSION=3.8.0
+        VERSIONSHORT=38
+        cat <<EOF > install_list.txt
+        https://www.python.org/ftp/python/$VERSION/win32/core.msi
+        https://www.python.org/ftp/python/$VERSION/win32/dev.msi
+        https://www.python.org/ftp/python/$VERSION/win32/lib.msi
+        https://www.python.org/ftp/python/$VERSION/win32/exe.msi
+        https://www.python.org/ftp/python/$VERSION/win32/tools.msi
+        https://www.python.org/ftp/python/$VERSION/win32/pip.msi
+EOF
+        cat install_list.txt
+        INSTALLER_URL="-i install_list.txt"
+        INSTALL_COMMAND="wget $WINETRICKS;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2015;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
+        CLEAN_COMMAND=""
+        EXECDIR="$HOME/.wine/drive_c/Python37"
+        MORE_COMMANDS= # Needs VC++ 10.0
+        ;;
+        
     pypy)
         VERSION=2.5.0
         INSTALLER_URL="https://bitbucket.org/pypy/pypy/downloads/pypy-$VERSION-win32.zip"
