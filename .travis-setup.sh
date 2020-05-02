@@ -245,6 +245,7 @@ eval $MORE_COMMANDS
 
 echo "/opt/wine-staging/bin/wine $PYTHON" '$@' > _python
 sudo apt-get install -y tree
+echo "$EXECDIR"
 tree $EXECDIR
 /opt/wine-staging/bin/wine $PIP install setuptools
 ls $EXECDIR/Tools/scripts
@@ -253,5 +254,5 @@ echo "/opt/wine-staging/bin/wine $EASY_INSTALL" '$@' > _easy_install
 echo "/opt/wine-staging/bin/wine $PIP" '$@' > _pip
 chmod +x _python _easy_install _pip
 
-wget https://bootstrap.pypa.io/ez_setup.py -O - | sed "s/DEFAULT_VERSION = .*/DEFAULT_VERSION = '24.3.0'/g" | ./_python
-./_easy_install pip
+#wget https://bootstrap.pypa.io/ez_setup.py -O - | sed "s/DEFAULT_VERSION = .*/DEFAULT_VERSION = '24.3.0'/g" | ./_python
+#./_easy_install pip
