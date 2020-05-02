@@ -244,7 +244,8 @@ sed -i 's/_windows_cert_stores = .*/_windows_cert_stores = ("ROOT",)/' "$EXECDIR
 eval $MORE_COMMANDS
 
 echo "/opt/wine-staging/bin/wine $PYTHON" '$@' > _python
-ls $EXECDIR/Tools/scripts
+sudo apt-get install tree
+tree $EXECDIR/Tools
 /opt/wine-staging/bin/wine $PIP install setuptools
 ls $EXECDIR/Tools/scripts
 
