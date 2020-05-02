@@ -221,8 +221,8 @@ EOF
 esac
 
 [[ -z "$PYTHON" ]] && PYTHON="$EXECDIR/python.exe"
-[[ -z "$EASY_INSTALL" ]] && EASY_INSTALL="$EXECDIR/Tools/easy_install.exe"
-[[ -z "$PIP" ]] && PIP="$EXECDIR/Tools/pip.exe"
+[[ -z "$EASY_INSTALL" ]] && EASY_INSTALL="$EXECDIR/Tools/scripts/easy_install.exe"
+[[ -z "$PIP" ]] && PIP="$EXECDIR/Tools/scripts/pip.exe"
 
 export PATH="/opt/wine-staging/bin:$PATH"
 
@@ -244,11 +244,9 @@ sed -i 's/_windows_cert_stores = .*/_windows_cert_stores = ("ROOT",)/' "$EXECDIR
 eval $MORE_COMMANDS
 
 echo "/opt/wine-staging/bin/wine $PYTHON" '$@' > _python
-ls $EXECDIR
-ls $EXECDIR/Tools
+ls $EXECDIR/Tools/scripts
 /opt/wine-staging/bin/wine $PIP install setuptools
-ls $EXECDIR/Scripts
-ls $EXECDIR
+ls $EXECDIR/Tools/scripts
 
 echo "/opt/wine-staging/bin/wine $EASY_INSTALL" '$@' > _easy_install
 echo "/opt/wine-staging/bin/wine $PIP" '$@' > _pip
