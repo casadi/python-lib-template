@@ -1,6 +1,8 @@
 #!/bin/bash
 sudo add-apt-repository -y ppa:pipelight/daily
-sudo apt-add-repository -y ppa:ubuntu-wine/ppa
+wget https://dl.winehq.org/wine-builds/Release.key
+sudo apt-key add Release.key
+sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
 sudo apt-get -qy update
 sudo apt-get install -y wine winbind xvfb cabextract
 
