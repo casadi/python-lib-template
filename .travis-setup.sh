@@ -169,7 +169,7 @@ EOF
 
 
     py38_64)
-        VERSION=3.8.0
+        VERSION=3.8.3
         VERSIONSHORT=38
         cat <<EOF > install_list.txt
         https://www.python.org/ftp/python/$VERSION/amd64/core.msi
@@ -187,7 +187,7 @@ EOF
         MORE_COMMANDS= # Needs VC++ 10.0
         ;;
     py38)
-        VERSION=3.8.0
+        VERSION=3.8.3
         VERSIONSHORT=38
         cat <<EOF > install_list.txt
         https://www.python.org/ftp/python/$VERSION/win32/core.msi
