@@ -1,7 +1,8 @@
 #!/bin/bash
 sudo add-apt-repository -y ppa:pipelight/daily
+sudo apt-add-repository -y ppa:ubuntu-wine/ppa
 sudo apt-get -qy update
-sudo apt-get install -y wine-staging winbind xvfb cabextract
+sudo apt-get install -y wine winbind xvfb cabextract
 
 WINETRICKS=https://raw.githubusercontent.com/Winetricks/winetricks/3fd9a36d9fb973ccf334413937e4d71aa5401311/src/winetricks
 
