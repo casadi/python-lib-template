@@ -6,7 +6,7 @@ sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
 sudo apt-get -qy update
 sudo apt-get install -y wine-stable-dev xvfb cabextract #winbind xvfb cabextract
 
-WINETRICKS=https://raw.githubusercontent.com/Winetricks/winetricks/3fd9a36d9fb973ccf334413937e4d71aa5401311/src/winetricks
+WINETRICKS=https://raw.githubusercontent.com/Winetricks/winetricks/20200412/src/winetricks #https://raw.githubusercontent.com/Winetricks/winetricks/3fd9a36d9fb973ccf334413937e4d71aa5401311/src/winetricks
 
 case "$WINEENV" in
     py26)
