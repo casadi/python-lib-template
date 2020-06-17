@@ -5,7 +5,7 @@ sudo apt-key add Release.key
 sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
 sudo apt-key update
 sudo apt-get -qy update
-sudo apt-get install -y --allow-unauthenticated wine-stable-dev xvfb cabextract #winbind xvfb cabextract
+sudo apt-get install -y --allow-unauthenticated winehq-stable-dev xvfb cabextract #winbind xvfb cabextract
 
 WINETRICKS=https://raw.githubusercontent.com/Winetricks/winetricks/20200412/src/winetricks #https://raw.githubusercontent.com/Winetricks/winetricks/3fd9a36d9fb973ccf334413937e4d71aa5401311/src/winetricks
 
@@ -228,7 +228,7 @@ esac
 [[ -z "$EASY_INSTALL" ]] && EASY_INSTALL="$EXECDIR/Tools/scripts/easy_install.exe"
 [[ -z "$PIP" ]] && PIP="$EXECDIR/Tools/scripts/pip.exe"
 
-export PATH="/opt/wine-staging/bin:$PATH"
+export PATH="/opt/wine-stable/bin:$PATH"
 
 echo "foo"
 which wine
@@ -250,7 +250,7 @@ sed -i 's/_windows_cert_stores = .*/_windows_cert_stores = ("ROOT",)/' "$EXECDIR
 
 eval $MORE_COMMANDS
 
-echo "wine $PYTHON" '$@' > _python # /opt/wine-staging/bin/
+echo "/opt/wine-stable/bin/wine $PYTHON" '$@' > _python
 sudo apt-get install -y tree
 echo "$EXECDIR"
 tree $EXECDIR
@@ -258,8 +258,8 @@ tree $EXECDIR
 wine $PIP install setuptools
 ls $EXECDIR/Tools/scripts
 
-echo "wine $EASY_INSTALL" '$@' > _easy_install # /opt/wine-staging/bin/
-echo "wine $PIP" '$@' > _pip # /opt/wine-staging/bin/
+echo "/opt/wine-stable/bin/wine $EASY_INSTALL" '$@' > _easy_install # /opt/wine-staging/bin/
+echo "/opt/wine-stable/bin/wine $PIP" '$@' > _pip # /opt/wine-staging/bin/
 chmod +x _python _easy_install _pip
 
 #wget https://bootstrap.pypa.io/ez_setup.py -O - | sed "s/DEFAULT_VERSION = .*/DEFAULT_VERSION = '24.3.0'/g" | ./_python
