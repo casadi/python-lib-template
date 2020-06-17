@@ -230,6 +230,9 @@ esac
 
 export PATH="/opt/wine-staging/bin:$PATH"
 
+echo "foo"
+which wine
+
 #export WINEARCH=win32
 wine wineboot
 
@@ -247,15 +250,16 @@ sed -i 's/_windows_cert_stores = .*/_windows_cert_stores = ("ROOT",)/' "$EXECDIR
 
 eval $MORE_COMMANDS
 
-echo "/opt/wine-staging/bin/wine $PYTHON" '$@' > _python
+echo "wine $PYTHON" '$@' > _python # /opt/wine-staging/bin/
 sudo apt-get install -y tree
 echo "$EXECDIR"
 tree $EXECDIR
-/opt/wine-staging/bin/wine $PIP install setuptools
+#/opt/wine-staging/bin/
+wine $PIP install setuptools
 ls $EXECDIR/Tools/scripts
 
-echo "/opt/wine-staging/bin/wine $EASY_INSTALL" '$@' > _easy_install
-echo "/opt/wine-staging/bin/wine $PIP" '$@' > _pip
+echo "wine $EASY_INSTALL" '$@' > _easy_install # /opt/wine-staging/bin/
+echo "wine $PIP" '$@' > _pip # /opt/wine-staging/bin/
 chmod +x _python _easy_install _pip
 
 #wget https://bootstrap.pypa.io/ez_setup.py -O - | sed "s/DEFAULT_VERSION = .*/DEFAULT_VERSION = '24.3.0'/g" | ./_python
