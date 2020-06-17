@@ -3,6 +3,7 @@ sudo add-apt-repository -y ppa:pipelight/daily
 wget https://dl.winehq.org/wine-builds/Release.key
 sudo apt-key add Release.key
 sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
+sudo apt-key update
 sudo apt-get -qy update
 sudo apt-get install -y --allow-unauthenticated wine-stable-dev xvfb cabextract #winbind xvfb cabextract
 
