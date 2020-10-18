@@ -201,6 +201,36 @@ EOF
         https://www.python.org/ftp/python/$VERSION/win32/tools.msi
         https://www.python.org/ftp/python/$VERSION/win32/pip.msi
 EOF
+
+    py39_64)
+        VERSION=3.9.0
+        VERSIONSHORT=39
+        cat <<EOF > install_list.txt
+        https://www.python.org/ftp/python/$VERSION/amd64/core.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/dev.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/lib.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/exe.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/tools.msi
+        https://www.python.org/ftp/python/$VERSION/amd64/pip.msi
+EOF
+        cat install_list.txt
+        INSTALLER_URL="-i install_list.txt"
+        INSTALL_COMMAND="wget $WINETRICKS;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2017;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;export WINEPATH=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
+        CLEAN_COMMAND=""
+        EXECDIR="$HOME/.wine/drive_c/Python$VERSIONSHORT"
+        MORE_COMMANDS= # Needs VC++ 10.0
+        ;;
+    py39)
+        VERSION=3.9.0
+        VERSIONSHORT=39
+        cat <<EOF > install_list.txt
+        https://www.python.org/ftp/python/$VERSION/win32/core.msi
+        https://www.python.org/ftp/python/$VERSION/win32/dev.msi
+        https://www.python.org/ftp/python/$VERSION/win32/lib.msi
+        https://www.python.org/ftp/python/$VERSION/win32/exe.msi
+        https://www.python.org/ftp/python/$VERSION/win32/tools.msi
+        https://www.python.org/ftp/python/$VERSION/win32/pip.msi
+EOF
         cat install_list.txt
         INSTALLER_URL="-i install_list.txt"
         INSTALL_COMMAND="wget $WINETRICKS;chmod +x winetricks;Xvfb :1& export DISPLAY=:1;./winetricks nocrashdialog -q vcrun2017;pkill Xvfb;export DISPLAY=;wine msiexec /i core.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i dev.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i lib.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i exe.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i tools.msi TARGETDIR=C:\Python$VERSIONSHORT;wine msiexec /i pip.msi TARGETDIR=C:\Python$VERSIONSHORT;"
